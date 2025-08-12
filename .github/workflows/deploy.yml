@@ -1,0 +1,31 @@
+name: Thinkify CI/CD
+
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+  build-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18'
+
+      - name: Install backend dependencies
+        run: |
+          cd server
+          npm install
+
+      - name: Install frontend dependencies
+        run: |
+          cd client
+          npm install
+
+      - name: Mock Deployment
+        run: echo "Deploying Thinkify..."
