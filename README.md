@@ -51,86 +51,30 @@ COOKIE_KEY = thinkify
 UPLOAD_DIRECTORY = uploads
 ```
 
-# Features
+## CI/CD Steps/Explanation
 
-## Admin
+This project uses **GitHub Actions** to automate the build and deployment process.  
+The workflow runs automatically whenever code is pushed to the `main` branch.
 
-- Profile
-  - Last Month User Activity
-  - Role Based User Distribution
-- Users Management
-- Sign Out
+### How It Works
 
-## Student
+1. **Trigger**
+   - The workflow is triggered on every push to the `main` branch.
 
-- Profile
-- Add Post
-- My Posts
-- Add Product
-- My Products
-- Task Manager
-- Setting
-  - Change Password
-- Sign Out
+2. **Runs on**
+   - Executes in a fresh **Ubuntu** virtual machine (`ubuntu-latest`).
 
-# Contribution Ideas
+3. **Steps**
+   - **Checkout repository**  
+     Uses `actions/checkout@v3` to pull the latest version of the code.
+   - **Setup Node.js**  
+     Installs **Node.js v18** 
+   - **Install backend dependencies**  
+     CD to the `server` folder and installs required packages with `npm install`.
+   - **Install frontend dependencies**  
+     CD to the `client` folder and installs required packages with `npm install`.
+   - **Mock Deployment**  
+     Simulates a deployment by printing `Deploying Thinkify...` to the console.
 
-- Continue with Google signup/signin
-- Single Product Sell Page
-- View Task Details
-- View User Details(public)
-- Edit user, post, product
-- Loading View
 
-## Institution/Teacher
 
-- post(text, image)
-  - by admin/institution
-  - by teacher
-- assignments
-- poll
-- resource sharing
-- test
-
-### Design Idea
-
-```
-|----------------------------------------------------------------
-|                 |                                |  Analytics |
-|-----------------|                                |------------|
-|                 |          ----------            |  Teachers  |
-|-----------------|          | Create |            |  Students  |
-|   Institution   |          ----------            |  Courses   |
-|-----------------|                                |    Posts   |
-|                 |                                |    ....    |
-|-----------------|--------------------------------|------------|
-```
-
-### Assignments
-
-- title
-- description
-- subject
-- deadline
-- total marks
-- status
-- audience
-
-### Polls
-
-- title
-- description
-- type(singl, multiple)
-- options
-- deadline
-- status
-- anonymous member
-- audience
-
-### Resource
-
-- title
-- description
-- visibility
-- url
-- audience
